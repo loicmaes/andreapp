@@ -13,7 +13,7 @@
       <span v-if="index > 0" class="chat__content__time">Today - Few seconds ago</span>
       <ChatBox v-if="index > 0" class="chat__content__message" avatar="/assets/images/avatars/michael.jpg" me>Mother fuc***!</ChatBox>
       <ChatBox v-if="index > 1" class="chat__content__message bdl" avatar="/assets/images/avatars/Ellipse.png" border-less>
-        <video src="/assets/videos/The%20Ultimate%20Rickroll....mp4" muted autoplay loop></video>
+        <video src="/assets/videos/The%20Ultimate%20Rickroll....mp4" autoplay loop></video>
       </ChatBox>
     </main>
 
