@@ -7,19 +7,41 @@
     </header>
 
     <main class="chat__content">
-
+      <span class="chat__content__time">Yesterday - 4:15pm</span>
+      <ChatBox class="chat__content__message" avatar="/assets/images/avatars/michael.jpg" me>Bro, I saw you at the market...<br />I watch your beatiful booty but I think that you need to make more SPORT!! 😁</ChatBox>
+      <ChatBox class="chat__content__message" avatar="/assets/images/avatars/Ellipse.png">Bro, just check this out!</ChatBox>
+      <span v-if="index > 0" class="chat__content__time">Today - Few seconds ago</span>
+      <ChatBox v-if="index > 0" class="chat__content__message" avatar="/assets/images/avatars/michael.jpg" me>Mother fuc***!</ChatBox>
+      <ChatBox v-if="index > 1" class="chat__content__message bdl" avatar="/assets/images/avatars/Ellipse.png" border-less>
+        <video src="/assets/videos/The%20Ultimate%20Rickroll....mp4" muted autoplay loop></video>
+      </ChatBox>
     </main>
 
     <footer @submit.prevent class="chat__actions">
-      <input type="text" class="chat__actions__input" placeholder="Type something..." required />
-      <button class="chat__actions__submit"><ion-icon name="send-outline"></ion-icon></button>
+      <input type="text" class="chat__actions__input" placeholder="Type something..." v-model="message" required />
+      <button class="chat__actions__submit" @click="sendMessage"><ion-icon name="send-outline"></ion-icon></button>
     </footer>
   </div>
 </template>
 
 <script>
+import ChatBox from '../components/ChatBox'
 export default {
-  name: 'ChatView'
+  name: 'ChatView',
+  components: { ChatBox },
+  data: () => ({
+    index: 0,
+    message: ''
+  }),
+  methods: {
+    sendMessage () {
+      if (this.message !== 'Mother fucker!') return
+
+      this.message = ''
+      this.index = 1
+      setTimeout(() => { this.index = 2 }, 2000)
+    }
+  }
 }
 </script>
 
@@ -54,6 +76,34 @@ export default {
 
   &__content {
     flex: 1 1;
+    display: flex;
+    grid-gap: 1rem;
+    overflow: auto;
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+
+    &__time {
+      opacity: .3;
+      font-size: .75rem;
+      align-self: center;
+    }
+
+    &__message {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+
+      &:nth-of-type(2n) {
+        flex-direction: row;
+        align-self: flex-start;
+      }
+
+      &.bdl {
+        video {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
   }
 
   &__actions {
